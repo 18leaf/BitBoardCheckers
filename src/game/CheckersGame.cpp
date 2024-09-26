@@ -9,7 +9,7 @@
 
 using namespace Game;
 
-CheckersGame::CheckersGame(const std::string &player1Name, std::string &player2Name) {
+CheckersGame::CheckersGame(const std::string &player1Name, const std::string &player2Name) {
 	player1 = std::make_unique<Player>(player1Name, true);
 	player2 = std::make_unique<Player>(player2Name, false);
 	currentPlayer = player1.get();

@@ -16,7 +16,8 @@ namespace Game
 
 class CheckersGame {
 public:
-	CheckersGame(const std::string& player1Name, std::string& player2Name);
+
+	CheckersGame(const std::string &player1Name, const std::string &player2Name);
 
 	// initialize loop
 	void startGame();
