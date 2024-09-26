@@ -1,0 +1,11 @@
+# ninja log v6
+5	371	7490769752772144	build.ninja	ab92eb0fda5ac2a0
+4	887	7490764303467805	CMakeFiles/BitBoardCheckers.dir/src/main.cpp.obj	4e0fcd9bc4ebaf8b
+891	1104	7490764312332936	BitBoardCheckers.exe	ee3a4ba3aa87890b
+100	771	7490783988067536	CMakeFiles/BitBoardCheckers.dir/src/game/Player.cpp.obj	bee58117c28b0a17
+60	775	7490783987667613	CMakeFiles/BitBoardCheckers.dir/src/game/CheckersGame.cpp.obj	741cbfd5c42d00fd
+51	776	7490783987577540	CMakeFiles/BitBoardCheckers.dir/src/utils/BitManipulationUtility.cpp.obj	12a92f3bd0efc033
+78	777	7490783987847540	CMakeFiles/BitBoardCheckers.dir/src/game/Piece.cpp.obj	11b491be87bb0460
+89	780	7490783987957540	CMakeFiles/BitBoardCheckers.dir/src/game/Move.cpp.obj	b57cf6d7d0d6814
+110	794	7490783988167576	CMakeFiles/BitBoardCheckers.dir/src/exceptions/InvalidMoveException.cpp.obj	944a9ce1d0017888
+7	1301	7490783987142376	CMakeFiles/BitBoardCheckers.dir/src/main.cpp.obj	351bbc549a0a6646
