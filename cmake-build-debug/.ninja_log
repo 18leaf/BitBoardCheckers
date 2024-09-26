@@ -9,3 +9,6 @@
 89	780	7490783987957540	CMakeFiles/BitBoardCheckers.dir/src/game/Move.cpp.obj	b57cf6d7d0d6814
 110	794	7490783988167576	CMakeFiles/BitBoardCheckers.dir/src/exceptions/InvalidMoveException.cpp.obj	944a9ce1d0017888
 7	1301	7490783987142376	CMakeFiles/BitBoardCheckers.dir/src/main.cpp.obj	351bbc549a0a6646
+50	903	7490805241317925	CMakeFiles/BitBoardCheckers.dir/src/game/Board.cpp.obj	d0faac518f883dd8
+7	1040	7490805240897927	CMakeFiles/BitBoardCheckers.dir/src/utils/BitManipulationUtility.cpp.obj	12a92f3bd0efc033
+1040	1288	7490805251227334	BitBoardCheckers.exe	d971385c81745df2
