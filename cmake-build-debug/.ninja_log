@@ -21,3 +21,7 @@
 998	1239	7490814680722900	BitBoardCheckers.exe	d971385c81745df2
 7	985	7490815294851711	CMakeFiles/BitBoardCheckers.dir/src/main.cpp.obj	351bbc549a0a6646
 985	1228	7490815304637741	BitBoardCheckers.exe	d971385c81745df2
+8	1048	7490847896800263	CMakeFiles/BitBoardCheckers.dir/src/game/CheckersGame.cpp.obj	741cbfd5c42d00fd
+1048	1300	7490847907202811	BitBoardCheckers.exe	d971385c81745df2
+7	1041	7490848257020455	CMakeFiles/BitBoardCheckers.dir/src/game/CheckersGame.cpp.obj	741cbfd5c42d00fd
+1042	1278	7490848267358650	BitBoardCheckers.exe	d971385c81745df2
