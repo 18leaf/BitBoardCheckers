@@ -12,3 +12,12 @@
 50	903	7490805241317925	CMakeFiles/BitBoardCheckers.dir/src/game/Board.cpp.obj	d0faac518f883dd8
 7	1040	7490805240897927	CMakeFiles/BitBoardCheckers.dir/src/utils/BitManipulationUtility.cpp.obj	12a92f3bd0efc033
 1040	1288	7490805251227334	BitBoardCheckers.exe	d971385c81745df2
+7	505	7490809746288443	CMakeFiles/BitBoardCheckers.dir/src/game/Move.cpp.obj	b57cf6d7d0d6814
+506	758	7490809751287178	BitBoardCheckers.exe	d971385c81745df2
+7	888	7490810318866041	CMakeFiles/BitBoardCheckers.dir/src/main.cpp.obj	351bbc549a0a6646
+889	1122	7490810327696587	BitBoardCheckers.exe	d971385c81745df2
+50	935	7490814671243961	CMakeFiles/BitBoardCheckers.dir/src/game/Player.cpp.obj	bee58117c28b0a17
+7	998	7490814670819768	CMakeFiles/BitBoardCheckers.dir/src/main.cpp.obj	351bbc549a0a6646
+998	1239	7490814680722900	BitBoardCheckers.exe	d971385c81745df2
+7	985	7490815294851711	CMakeFiles/BitBoardCheckers.dir/src/main.cpp.obj	351bbc549a0a6646
+985	1228	7490815304637741	BitBoardCheckers.exe	d971385c81745df2
