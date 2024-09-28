@@ -6,8 +6,11 @@
 
 #include <iostream>
 
+#include "exceptions/InvalidMoveException.h"
+
 
 using namespace Game;
+using namespace Exceptions;
 
 CheckersGame::CheckersGame(const std::string &player1Name, const std::string &player2Name) {
 	player1 = std::make_unique<Player>(player1Name, true);
@@ -23,14 +26,28 @@ void CheckersGame::startGame() {
 	while (!isGameOver()) {
 		displayGameStatus();
 
-		// try to make new move, check validatiy, process, switch player, else reprompt
-		if (Move move = getPlayerMove(); validateMove(move)) {
+		// use Invalid Move Exception For later support with other board models
+		try {
+			// make move
+			Move move = getPlayerMove();
+
+			// validate and process move
+			validateMove(move);
 			processMove(move);
 			switchPlayer();
-		} else {
-			// TODO THROW EXCEPTION AND HANDLE
-			std::cout << "Invalid Move. Try Again" << std::endl;
+		} catch (InvalidMoveException &e) {
+			// display message
+			std::cout << e.what() << std::endl;
 		}
+
+		// // try to make new move, check validatiy, process, switch player, else reprompt
+		// if (Move move = getPlayerMove(); validateMove(move)) {
+		// 	processMove(move);
+		// 	switchPlayer();
+		// } else {
+		// 	// TODO THROW EXCEPTION AND HANDLE
+		// 	std::cout << "Invalid Move. Try Again" << std::endl;
+		// }
 	}
 
 	// TODO implement end of Game prompt
@@ -92,5 +109,8 @@ Move CheckersGame::getPlayerMove() {
 
 bool CheckersGame::validateMove(const Move &move) {
 	bool isPlayerOne = currentPlayer->isPlayerOne();
-	return board.isLegalMove(move.getStartPosition(), move.getEndPosition(), isPlayerOne);
+	if (!board.isLegalMove(move.getStartPosition(), move.getEndPosition(), isPlayerOne)) {
+		throw InvalidMoveException("Invalid move. Try Again.");
+	}
+	return true;
 }

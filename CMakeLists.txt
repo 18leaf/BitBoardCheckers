@@ -16,8 +16,6 @@ add_executable(BitBoardCheckers src/main.cpp
         src/game/CheckersGame.h
         src/game/Board.cpp
         src/game/Board.h
-        src/game/Piece.cpp
-        src/game/Piece.h
         src/game/Move.cpp
         src/game/Move.h
         src/game/Player.cpp

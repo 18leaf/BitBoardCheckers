@@ -10,7 +10,7 @@ using namespace Utils;
 
 uint64_t BitManipulationUtility::setBit(uint64_t value, int position) {
 	// To be implemented
-	return value;
+	return value | (1ULL << position);
 }
 
 uint64_t BitManipulationUtility::clearBit(uint64_t value, int position) {
