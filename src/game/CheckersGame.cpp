@@ -19,98 +19,76 @@ CheckersGame::CheckersGame(const std::string &player1Name, const std::string &pl
 	board.initializeBoard();
 }
 
-
 void CheckersGame::startGame() {
-	// TODO implement Move Stack to track moves previously made
-	// game loop
-	while (!isGameOver()) {
-		displayGameStatus();
+    // Game loop
+    while (!isGameOver()) {
+        displayGameStatus();
 
-		// use Invalid Move Exception For later support with other board models
-		try {
-			// make move
-			Move move = getPlayerMove();
+        try {
+            // Get and process player move
+            Move move = getPlayerMove();
 
-			// validate and process move
-			validateMove(move);
-			processMove(move);
-			switchPlayer();
-		} catch (InvalidMoveException &e) {
-			// display message
-			std::cout << e.what() << std::endl;
-		}
+            // Validate and process move
+            validateMove(move);
+            processMove(move);
 
-		// // try to make new move, check validatiy, process, switch player, else reprompt
-		// if (Move move = getPlayerMove(); validateMove(move)) {
-		// 	processMove(move);
-		// 	switchPlayer();
-		// } else {
-		// 	// TODO THROW EXCEPTION AND HANDLE
-		// 	std::cout << "Invalid Move. Try Again" << std::endl;
-		// }
-	}
+            // Switch to the next player
+            switchPlayer();
+        } catch (const InvalidMoveException &e) {
+            std::cout << "Invalid move: " << e.what() << "\nPlease try again.\n";
+        } catch (const std::exception &e) {
+            std::cout << "Error: " << e.what() << "\n";
+        }
+    }
 
-	// TODO implement end of Game prompt
-	std::cout << "Game Over" << std::endl;
-	if (currentPlayer == player1.get()) {
-		std::cout << player2->getName() << " wins!\n";
-	} else {
-		std::cout << player1->getName() << " wins!\n";
-	}
+    // end of game
+    std::cout << "Game Over\n";
+    std::cout << currentPlayer->getName() << " has no legal moves or pieces left.\n";
+    std::cout << (currentPlayer == player1.get() ? player2->getName() : player1->getName()) << " wins!\n";
 }
 
 void CheckersGame::switchPlayer() {
-	if (currentPlayer == player1.get()) {
-		currentPlayer = player2.get();
-	} else {
-		currentPlayer = player1.get();
-	}
+    currentPlayer = (currentPlayer == player1.get()) ? player2.get() : player1.get();
 }
 
-bool CheckersGame::processMove(const Move& move) {
-	// apply move to the board
-	const int startPosition = move.getStartPosition();
-	const int endPosition = move.getEndPosition();
-	const bool isPlayerOne = currentPlayer->isPlayerOne();
-	board.movePiece(startPosition, endPosition, isPlayerOne);
+void CheckersGame::processMove(const Move& move) {
+    int startPosition = move.getStartPosition();
+    int endPosition = move.getEndPosition();
+    bool isPlayerOne = currentPlayer->isPlayerOne();
 
-	// handle captures
-	if (move.getIsCapture()) {
-		const int capturedPosition = (startPosition + endPosition) / 2;
-		board.capturePiece(capturedPosition, isPlayerOne);
-	}
-
-	// check king promotion
-	board.promoteToKing(endPosition);
-
-	return true;
+    // Move the piece on the board
+    board.movePiece(startPosition, endPosition, isPlayerOne);
 }
 
-bool CheckersGame::isGameOver() {
-	// todo implement logic
-	return false;
+bool CheckersGame::isGameOver() const {
+    // any legal moves ie has any pieces or is stuck
+    return board.hasAnyLegalMoves(currentPlayer->isPlayerOne());;
 }
 
-void CheckersGame::displayGameStatus() {
-	std::cout << "\nCurrent Board:\n";
-	board.displayBoard();
-	std::cout << currentPlayer->getName() << "'s turn.\n";
+void CheckersGame::displayGameStatus() const {
+    std::cout << "\nCurrent Board:\n";
+    board.displayBoard();
+    std::cout << currentPlayer->getName() << "'s turn.\n";
 }
 
 Move CheckersGame::getPlayerMove() {
-	int start, end;
-	std::cout << "Enter your move (start end): ";
-	std::cin >> start >> end;
+    std::string startCoord, endCoord;
+    std::cout << "Enter your move (e.g., E3 F4): ";
+    std::cin >> startCoord >> endCoord;
 
-	// TODO CHECK IF CAPTURED
-
-	return {start, end};
+    try {
+        int startPosition = Game::Board::coordinateToPosition(startCoord);
+        int endPosition = Game::Board::coordinateToPosition(endCoord);
+        return {startPosition, endPosition};
+    } catch (const std::exception &e) {
+        throw InvalidMoveException("Invalid input coordinates.");
+    }
 }
 
-bool CheckersGame::validateMove(const Move &move) {
-	bool isPlayerOne = currentPlayer->isPlayerOne();
-	if (!board.isLegalMove(move.getStartPosition(), move.getEndPosition(), isPlayerOne)) {
-		throw InvalidMoveException("Invalid move. Try Again.");
-	}
-	return true;
+void CheckersGame::validateMove(const Move &move) {
+    bool isPlayerOne = currentPlayer->isPlayerOne();
+	// is legal move
+    if (!board.isLegalMove(move.getStartPosition(), move.getEndPosition(), isPlayerOne)) {
+        throw InvalidMoveException("The move is not legal.");
+    }
 }

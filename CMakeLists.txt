@@ -21,4 +21,6 @@ add_executable(BitBoardCheckers src/main.cpp
         src/game/Player.cpp
         src/game/Player.h
         src/exceptions/InvalidMoveException.cpp
-        src/exceptions/InvalidMoveException.h)
+        src/exceptions/InvalidMoveException.h
+        src/tests/TestCheckersGame.cpp
+)

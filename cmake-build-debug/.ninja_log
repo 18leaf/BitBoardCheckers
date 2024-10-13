@@ -1,17 +1,13 @@
 # ninja log v6
-7	505	7490809746288443	CMakeFiles/BitBoardCheckers.dir/src/game/Move.cpp.obj	b57cf6d7d0d6814
+3	396	7505349011656940	build.ninja	ab92eb0fda5ac2a0
 50	935	7490814671243961	CMakeFiles/BitBoardCheckers.dir/src/game/Player.cpp.obj	bee58117c28b0a17
-5	371	7492497946312078	build.ninja	ab92eb0fda5ac2a0
-8	1162	7490851181610021	CMakeFiles/BitBoardCheckers.dir/src/main.cpp.obj	351bbc549a0a6646
-1068	1322	7492497047387183	BitBoardCheckers.exe	d971385c81745df2
-7	1068	7492497036774807	CMakeFiles/BitBoardCheckers.dir/src/game/CheckersGame.cpp.obj	741cbfd5c42d00fd
+7	505	7490809746288443	CMakeFiles/BitBoardCheckers.dir/src/game/Move.cpp.obj	b57cf6d7d0d6814
+8	1458	7505346955240540	CMakeFiles/BitBoardCheckers.dir/src/main.cpp.obj	351bbc549a0a6646
+1114	1382	7504762291872241	BitBoardCheckers.exe	4b56cf75f83c69e0
+55	1504	7505346955710891	CMakeFiles/BitBoardCheckers.dir/src/game/CheckersGame.cpp.obj	741cbfd5c42d00fd
+52	494	7504551108022443	CMakeFiles/BitBoardCheckers.dir/src/tests/bitManipulationTests.cpp.obj	568ef21f3c2d17b5
+14	1209	7504552080414494	CMakeFiles/BitBoardCheckers.dir/src/utils/BitManipulationUtility.cpp.obj	12a92f3bd0efc033
 78	777	7490783987847540	CMakeFiles/BitBoardCheckers.dir/src/game/Piece.cpp.obj	11b491be87bb0460
-7	1040	7490805240897927	CMakeFiles/BitBoardCheckers.dir/src/utils/BitManipulationUtility.cpp.obj	12a92f3bd0efc033
 20	988	7492493328006078	CMakeFiles/BitBoardCheckers.dir/src/exceptions/InvalidMoveException.cpp.obj	944a9ce1d0017888
-50	903	7490805241317925	CMakeFiles/BitBoardCheckers.dir/src/game/Board.cpp.obj	d0faac518f883dd8
-2	437	7492497946312078	build.ninja	ab92eb0fda5ac2a0
-12	268	7492497946844082	BitBoardCheckers.exe	4b56cf75f83c69e0
-7	1011	7492500045954238	CMakeFiles/BitBoardCheckers.dir/src/utils/BitManipulationUtility.cpp.obj	12a92f3bd0efc033
-1012	1268	7492500056003137	BitBoardCheckers.exe	4b56cf75f83c69e0
-7	1112	7492618131695702	CMakeFiles/BitBoardCheckers.dir/src/utils/BitManipulationUtility.cpp.obj	12a92f3bd0efc033
-1113	1385	7492618142752873	BitBoardCheckers.exe	4b56cf75f83c69e0
+66	1347	7505346955820622	CMakeFiles/BitBoardCheckers.dir/src/game/Board.cpp.obj	d0faac518f883dd8
+77	1484	7505346955945681	CMakeFiles/BitBoardCheckers.dir/src/TestCheckersGame.cpp.obj	d020baa1f95a7c8f

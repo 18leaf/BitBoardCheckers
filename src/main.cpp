@@ -3,10 +3,9 @@
 #include "game/Player.h"
 #include "game/CheckersGame.h"
 
-using namespace Game;
 
 int main() {
-	CheckersGame game("Lindsey", "None");
+	Game::CheckersGame game("Lindsey", "NOTME");
 	game.startGame();
     return 0;
 }

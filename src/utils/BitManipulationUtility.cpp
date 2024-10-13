@@ -4,26 +4,39 @@
 
 #include "BitManipulationUtility.h"
 #include <bitset>
+#include <cmath>
 #include <sstream>
 
 using namespace Utils;
 
 uint64_t BitManipulationUtility::setBit(uint64_t value, int position) {
+	if (position < 0 || position > 63) {
+		throw std::out_of_range("Bit position must be between 0 and 63");
+	}
 	// shifts the bit 1 to the left by position bits, value | bitwise OR operator to set the bit ON
 	return value | (1ULL << position);
 }
 
 uint64_t BitManipulationUtility::clearBit(uint64_t value, int position) {
+	if (position < 0 || position > 63) {
+		throw std::out_of_range("Bit position must be between 0 and 63");
+	}
 	// bitwise & after masking others to 1 except @ position
 	return value & ~(1ULL << position);
 }
 
 uint64_t BitManipulationUtility::toggleBit(uint64_t value, int position) {
+	if (position < 0 || position > 63) {
+		throw std::out_of_range("Bit position must be between 0 and 63");
+	}
 	// bitwise XOR at position
 	return value ^ (1ULL << position);
 }
 
 int BitManipulationUtility::getBit(uint64_t value, int position) {
+	if (position < 0 || position > 63) {
+		throw std::out_of_range("Bit position must be between 0 and 63");
+	}
 	// shift bit to right by position, get value at position
 	return (value >> position) & 1U;
 }
@@ -78,25 +91,39 @@ uint64_t BitManipulationUtility::bitMultiply(uint64_t a, uint64_t b) {
 	return result;
 }
 
-uint64_t BitManipulationUtility::bitDivide(uint64_t dividend, uint64_t divisor) {
+uint64_t BitManipulationUtility::bitDivide(uint64_t a, uint64_t b) {
 	// cannot divide by zero
-	if (divisor == 0) {
+	// a divided b divisor
+	if (b == 0) {
 		throw std::overflow_error("Divide by zero");
 	}
 
+	uint64_t quotient = 0;
+	uint64_t remainder = 0;
 
-
-
-	return 0;
+	// iterate over every bit
+	for (int i = 63; i >= 0; i--) {
+		remainder <<= 1;
+		// remainder at digit over set to position shifted from left to right each loop and LSB
+		remainder |= (a >> i) & 1U;
+		if (remainder >= b) {
+			remainder = bitSubtract(remainder, b);
+			quotient |= (1ULL << i);
+		}
+	}
+	return quotient;
 }
 
-std::string BitManipulationUtility::toBinaryString(uint64_t value) {
+std::string BitManipulationUtility::toBinaryString(const uint64_t value) {
 	// To be implemented
-	return "";
+	const std::bitset<64> bits(value);
+	return bits.to_string();
 }
 
 std::string BitManipulationUtility::toHexString(uint64_t value) {
 	// To be implemented
-	return "";
+	std::stringstream ss;
+	ss << std::hex << std::uppercase << value;
+	return ss.str();
 }
 

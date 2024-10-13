@@ -21,9 +21,11 @@ public:
 
 	// initialize loop
 	void startGame();
+	Board board;
+	void validateMove(const Move& move);
+	[[nodiscard]] bool isGameOver() const;
 
 private:
-	Board board;
 	// unique players initialization
 	std::unique_ptr<Player> player1;
 	std::unique_ptr<Player> player2;
@@ -32,13 +34,11 @@ private:
 
 	// game state methods
 	void switchPlayer();
-	bool processMove(const Move& move);
-	bool isGameOver();
-	void displayGameStatus();
-
+	void processMove(const Move& move);
+	void displayGameStatus() const;
 	// helpers
-	Move getPlayerMove();
-	bool validateMove(const Move& move);
+	static Move getPlayerMove();
+
 };
 
 }
