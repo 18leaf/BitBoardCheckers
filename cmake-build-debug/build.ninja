@@ -98,20 +98,6 @@ build CMakeFiles/BitBoardCheckers.dir/src/exceptions/InvalidMoveException.cpp.ob
   OBJECT_DIR = CMakeFiles\BitBoardCheckers.dir
   OBJECT_FILE_DIR = CMakeFiles\BitBoardCheckers.dir\src\exceptions
 
-build CMakeFiles/BitBoardCheckers.dir/src/TestCheckersGame.cpp.obj: CXX_COMPILER__BitBoardCheckers_unscanned_Debug C$:/Users/Lindsey/CLionProjects/BitBoardCheckers/src/TestCheckersGame.cpp || cmake_object_order_depends_target_BitBoardCheckers
-  DEP_FILE = CMakeFiles\BitBoardCheckers.dir\src\TestCheckersGame.cpp.obj.d
-  FLAGS = -g -std=gnu++20 -fdiagnostics-color=always
-  INCLUDES = -IC:/Users/Lindsey/CLionProjects/BitBoardCheckers/src
-  OBJECT_DIR = CMakeFiles\BitBoardCheckers.dir
-  OBJECT_FILE_DIR = CMakeFiles\BitBoardCheckers.dir\src
-
-build CMakeFiles/BitBoardCheckers.dir/src/tests/TestCheckersGame.cpp.obj: CXX_COMPILER__BitBoardCheckers_unscanned_Debug C$:/Users/Lindsey/CLionProjects/BitBoardCheckers/src/tests/TestCheckersGame.cpp || cmake_object_order_depends_target_BitBoardCheckers
-  DEP_FILE = CMakeFiles\BitBoardCheckers.dir\src\tests\TestCheckersGame.cpp.obj.d
-  FLAGS = -g -std=gnu++20 -fdiagnostics-color=always
-  INCLUDES = -IC:/Users/Lindsey/CLionProjects/BitBoardCheckers/src
-  OBJECT_DIR = CMakeFiles\BitBoardCheckers.dir
-  OBJECT_FILE_DIR = CMakeFiles\BitBoardCheckers.dir\src\tests
-
 
 # =============================================================================
 # Link build statements for EXECUTABLE target BitBoardCheckers
@@ -120,7 +106,7 @@ build CMakeFiles/BitBoardCheckers.dir/src/tests/TestCheckersGame.cpp.obj: CXX_CO
 #############################################
 # Link the executable BitBoardCheckers.exe
 
-build BitBoardCheckers.exe: CXX_EXECUTABLE_LINKER__BitBoardCheckers_Debug CMakeFiles/BitBoardCheckers.dir/src/main.cpp.obj CMakeFiles/BitBoardCheckers.dir/src/utils/BitManipulationUtility.cpp.obj CMakeFiles/BitBoardCheckers.dir/src/game/CheckersGame.cpp.obj CMakeFiles/BitBoardCheckers.dir/src/game/Board.cpp.obj CMakeFiles/BitBoardCheckers.dir/src/game/Move.cpp.obj CMakeFiles/BitBoardCheckers.dir/src/game/Player.cpp.obj CMakeFiles/BitBoardCheckers.dir/src/exceptions/InvalidMoveException.cpp.obj CMakeFiles/BitBoardCheckers.dir/src/TestCheckersGame.cpp.obj CMakeFiles/BitBoardCheckers.dir/src/tests/TestCheckersGame.cpp.obj
+build BitBoardCheckers.exe: CXX_EXECUTABLE_LINKER__BitBoardCheckers_Debug CMakeFiles/BitBoardCheckers.dir/src/main.cpp.obj CMakeFiles/BitBoardCheckers.dir/src/utils/BitManipulationUtility.cpp.obj CMakeFiles/BitBoardCheckers.dir/src/game/CheckersGame.cpp.obj CMakeFiles/BitBoardCheckers.dir/src/game/Board.cpp.obj CMakeFiles/BitBoardCheckers.dir/src/game/Move.cpp.obj CMakeFiles/BitBoardCheckers.dir/src/game/Player.cpp.obj CMakeFiles/BitBoardCheckers.dir/src/exceptions/InvalidMoveException.cpp.obj
   FLAGS = -g
   LINK_LIBRARIES = -lkernel32 -luser32 -lgdi32 -lwinspool -lshell32 -lole32 -loleaut32 -luuid -lcomdlg32 -ladvapi32
   OBJECT_DIR = CMakeFiles\BitBoardCheckers.dir

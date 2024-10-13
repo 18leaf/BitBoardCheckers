@@ -21,7 +21,7 @@ CheckersGame::CheckersGame(const std::string &player1Name, const std::string &pl
 
 void CheckersGame::startGame() {
     // Game loop
-    while (!isGameOver()) {
+    do {
         displayGameStatus();
 
         try {
@@ -39,7 +39,9 @@ void CheckersGame::startGame() {
         } catch (const std::exception &e) {
             std::cout << "Error: " << e.what() << "\n";
         }
-    }
+    } while (!isGameOver());
+
+	displayGameStatus();
 
     // end of game
     std::cout << "Game Over\n";
@@ -62,7 +64,7 @@ void CheckersGame::processMove(const Move& move) {
 
 bool CheckersGame::isGameOver() const {
     // any legal moves ie has any pieces or is stuck
-    return board.hasAnyLegalMoves(currentPlayer->isPlayerOne());;
+    return !board.hasAnyLegalMoves(currentPlayer->isPlayerOne());;
 }
 
 void CheckersGame::displayGameStatus() const {

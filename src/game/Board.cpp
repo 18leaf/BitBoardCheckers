@@ -31,6 +31,10 @@ void Board::initializeBoard() {
 
 	kingPieces = 0ULL;
 
+	// note these were computed using loops below
+	player1Pieces = 0xAA55AA;
+	player2Pieces = 0x55AA550000000000;
+/* loop to compute each players initial pieces
 	for (int row = 0; row <= 2; ++row) {
 		for (int col = 0; col < 8; ++col) {
 			if ((row + col) % 2 == 1) {
@@ -48,11 +52,11 @@ void Board::initializeBoard() {
 				player2Pieces = BitManipulationUtility::setBit(player2Pieces, bitPosition);
 			}
 		}
-	}
+	}*/
 }
 
 void Board::movePiece(const int startPosition, const int endPosition, const bool isPlayerOne) {
-	// Validate the move
+	// validate
 	if (!isLegalMove(startPosition, endPosition, isPlayerOne)) {
 		throw InvalidMoveException("Invalid move");
 	}
@@ -191,23 +195,25 @@ uint64_t Board::generateSingleStepMoves(const uint64_t pieces, const bool isPlay
 	uint64_t nonKings = pieces & ~kingPieces;
 
 	// kings can move in all direction
-	singleMoves |= (kings << 7) & emptySquares & LEFT_EDGE;
-	singleMoves |= (kings << 9) & emptySquares & RIGHT_EDGE;
-	singleMoves |= (kings >> 7) & emptySquares & RIGHT_EDGE;
-	singleMoves |= (kings >> 9) & emptySquares & LEFT_EDGE;
+	singleMoves |= ((kings & LEFT_EDGE) << 7) & emptySquares;
+	singleMoves |= ((kings & RIGHT_EDGE) << 9) & emptySquares;
+	singleMoves |= ((kings & RIGHT_EDGE) >> 7) & emptySquares;
+	singleMoves |= ((kings & LEFT_EDGE) >> 9) & emptySquares;
+
+
 
 	// shift all pieces in O(1) time checking where possible to shift that doesn't violate masks
 	if (isPlayerOne) {
 		// shift entire board of pieces North east Where possible IE not interfering with mask
 		// note nonKings prevents double moving for kings
-		singleMoves |= (nonKings << 7) & emptySquares & LEFT_EDGE;
+		singleMoves |= ((nonKings & LEFT_EDGE) << 7) & emptySquares;
 		// north-west
-		singleMoves |= (nonKings << 9) & emptySquares & RIGHT_EDGE;
+		singleMoves |= ((nonKings & RIGHT_EDGE) << 9) & emptySquares;
 	} else {
 		// se
-		singleMoves |= (nonKings >> 9) & emptySquares & LEFT_EDGE;
+		singleMoves |= ((nonKings & LEFT_EDGE) >> 9) & emptySquares;
 		// sw
-		singleMoves |= (nonKings >> 7) & emptySquares & RIGHT_EDGE;
+		singleMoves |= ((nonKings & RIGHT_EDGE) >> 7) & emptySquares;
 	}
 	// a mask of possible moves
 	return singleMoves;
@@ -223,17 +229,17 @@ uint64_t Board::generateCaptureMoves(const uint64_t pieces, const bool isPlayerO
 	uint64_t nonKings = pieces & ~kingPieces;
 
 	// all directions for kings to capture for each direction
-	uint64_t potential = (kings << 7) & opponentPieces & LEFT_EDGE; // holds potential moves for kings
-	captures |= (potential << 7) & emptySquares & LEFT_EDGE;
+	uint64_t potential = ((kings & LEFT_EDGE) << 7) & opponentPieces; // holds potential moves for kings
+	captures |= ((potential & LEFT_EDGE) << 7) & emptySquares;
 
-	potential = (kings << 9) & opponentPieces & RIGHT_EDGE;
-	captures |= (potential << 9) & emptySquares & RIGHT_EDGE;
+	potential = ((kings & RIGHT_EDGE) << 9) & opponentPieces;
+	captures |= ((potential & RIGHT_EDGE) << 9) & emptySquares;
 
-	potential = (kings >> 7) & opponentPieces & RIGHT_EDGE;
-	captures |= (potential >> 7) & emptySquares & RIGHT_EDGE;
+	potential = ((kings & RIGHT_EDGE) >> 7) & opponentPieces;
+	captures |= ((potential & RIGHT_EDGE) >> 7) & emptySquares;
 
-	potential = (kings >> 9) & opponentPieces & LEFT_EDGE;
-	captures |= (potential >> 9) & emptySquares & LEFT_EDGE;
+	potential = ((kings & LEFT_EDGE) >> 9) & opponentPieces;
+	captures |= ((potential & LEFT_EDGE) >> 9) & emptySquares;
 	// for captures... check diagonal if populated, then one more shift in same direction = a capture
 	// if potential is true/1 then if diagonal of potential is empty it is capturable
 	/*
@@ -245,18 +251,18 @@ uint64_t Board::generateCaptureMoves(const uint64_t pieces, const bool isPlayerO
 	 */
 	if (isPlayerOne) {
 		// ne cap
-		potential = (nonKings << 7) & opponentPieces & LEFT_EDGE;
-		captures |= (potential << 7) & emptySquares & LEFT_EDGE;
+		potential = ((nonKings & LEFT_EDGE) << 7) & opponentPieces;
+		captures |= ((potential & LEFT_EDGE) << 7) & emptySquares;
 		// nw cap
-		potential = (nonKings << 9) & opponentPieces & RIGHT_EDGE;
-		captures |= (potential << 9) & emptySquares & RIGHT_EDGE;
+		potential = ((nonKings & RIGHT_EDGE) << 9) & opponentPieces;
+		captures |= ((potential & RIGHT_EDGE) << 9) & emptySquares;
 	} else {
 		// same but for other player se
-		potential = (nonKings >> 9) & opponentPieces & LEFT_EDGE;
-		captures |= (potential >> 9) & emptySquares & LEFT_EDGE;
+		potential = ((nonKings & LEFT_EDGE) >> 9) & opponentPieces;
+		captures |= ((potential & LEFT_EDGE) >> 9) & emptySquares;
 		// sw
-		potential = (nonKings >> 7) & opponentPieces & RIGHT_EDGE;
-		captures |= (potential >> 7) & emptySquares & RIGHT_EDGE;
+		potential = ((nonKings & RIGHT_EDGE) >> 7) & opponentPieces;
+		captures |= ((potential & RIGHT_EDGE) >> 7) & emptySquares;
 	}
 
 	return captures;
@@ -369,6 +375,7 @@ void Board::displayBoard() const {
 		}
 		std::cout << row + 1 << "\n";
 	}
-	std::cout << "  A B C D E F G H\n";
-	std::cout << &player1Pieces << &player2Pieces << "\n";
+	std::cout << "  A B C D E F G H\nPlayer 1 Pieces: ";
+	std::cout << BitManipulationUtility::toBinaryString(player1Pieces) << "\nPlayer 2 Pieces: "<< BitManipulationUtility::toBinaryString(player2Pieces) << "\n";
+	std::cout << "Player 1 Pieces: " << BitManipulationUtility::toHexString(player1Pieces) << "\nPlayer 2 Pieces: " << BitManipulationUtility::toHexString(player2Pieces) << "\n";
 }
