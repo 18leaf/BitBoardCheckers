@@ -1,3 +1,0 @@
-C:/Users/Lindsey/CLionProjects/BitBoardCheckers/cmake-build-debug/CMakeFiles/BitBoardCheckers.dir
-C:/Users/Lindsey/CLionProjects/BitBoardCheckers/cmake-build-debug/CMakeFiles/edit_cache.dir
-C:/Users/Lindsey/CLionProjects/BitBoardCheckers/cmake-build-debug/CMakeFiles/rebuild_cache.dir
