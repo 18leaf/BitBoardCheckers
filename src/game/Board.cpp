@@ -56,7 +56,7 @@ void Board::initializeBoard() {
 }
 
 void Board::movePiece(const int startPosition, const int endPosition, const bool isPlayerOne) {
-	// validate
+	// validate moves
 	if (!isLegalMove(startPosition, endPosition, isPlayerOne)) {
 		throw InvalidMoveException("Invalid move");
 	}
