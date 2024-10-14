@@ -65,3 +65,6 @@ Displays the current board and indicates which player's turn it is.
 
 Some more Info Word doc: https://kennesawedu-my.sharepoint.com/:w:/g/personal/lfergu30_students_kennesaw_edu/Ed6gS38TWORBquwvyjcLJJUBlF0DawY3pXWkNjbK6MpE6w?e=AtCZOQ
 
+Youtube Video Demonstration: https://youtu.be/qQLEAmnd3eQ
+
+
