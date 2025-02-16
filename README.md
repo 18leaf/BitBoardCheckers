@@ -28,20 +28,6 @@ A C++ implementation of Checkers that uses a 64-bit bitboard to efficiently repr
 - **Bitwise Utilities**  
   Utility functions (e.g., `setBit`, `clearBit`, `toggleBit`) provide a lower-level interface for toggling and reading bits, as well as supplemental operations like bitwise addition/multiplication.
 
----
-## Building and Running
-
-1. **Clone or Download** the repository containing these sources.  
-2. **Compile** using your preferred C++ compiler or build system (e.g., CMake, Make):  
-   ```bash
-   g++ -std=c++17 -I include src/*.cpp -o checkers
-   ```
-3. **Run** the compiled executable:  
-   ```bash
-   ./checkers
-   ```
-
----
 
 ## Sample Usage
 
@@ -51,7 +37,7 @@ Enter your move (e.g., E3 F4): E3 F4
 ```
 The board will update, and the next player’s turn begins.
 
-**(Example screenshot or console output can be placed here.)**
+![screenshot](https://github.com/18leaf/BitBoardCheckers/blob/master/checkersbitboardimage.png)
 
 ---
 
@@ -63,12 +49,3 @@ The board will update, and the next player’s turn begins.
 - **YouTube Video Demonstration**:  
   [Checkers Bitboard in Action](https://youtu.be/qQLEAmnd3eQ)
 
----
-
-## License
-
-Include or reference your chosen license here if applicable.
-
----
-
-*For further questions or clarifications, see the source files and documentation within the repository.*
