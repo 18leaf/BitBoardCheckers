@@ -1,70 +1,74 @@
 # Checkers Bitboard Game
 
-This project is a Checkers game implemented in C++ using a bitboard structure to represent the game state. It includes classes to manage the board, game logic, player interactions, and bitwise manipulations for efficient move calculations.
+A C++ implementation of Checkers that uses a 64-bit bitboard to efficiently represent the board, track piece locations (including kings), and compute legal moves. This structure significantly reduces memory overhead and leverages fast bitwise operations to handle move generation and captures.
 
-## Overview of Key Functions in `Board` and `CheckersGame`
+---
 
-### Board Class
+## Key Features
 
-The `Board` class is responsible for representing the game state, handling moves, and validating game rules using bitboards. Below are the most important functions:
+- **Bitboard Representation**  
+  Each 64-bit integer bitboard encodes a player’s pieces and potential king positions. Bits are set or cleared using efficient bitwise operations, enabling constant-time checks for moves and captures.
 
-#### `initializeBoard()`
-Initializes the board by setting the initial positions of Player 1 and Player 2's pieces using predefined bit masks. Kings are not set at the beginning.
+- **Board and Game Logic**  
+  - **Board**  
+    - Maintains separate bitboards for Player 1 pieces, Player 2 pieces, and kinged pieces.  
+    - Handles movement, captures, and promotion logic (king creation).  
+    - Enforces boundaries using edge masks (LEFT_EDGE, RIGHT_EDGE) to prevent wrapping.  
 
-#### `movePiece(int startPosition, int endPosition, bool isPlayerOne)`
-Moves a piece from `startPosition` to `endPosition`. This function also checks if the move is legal, handles captures, and checks if the piece should be promoted to a king.
+  - **CheckersGame**  
+    - Manages turn order, validates moves, and checks for game termination.  
+    - Provides user input handling (coordinate-based moves, e.g. `E3 F4`).  
+    - Automatically detects when a player has no legal moves (resulting in game over).
 
-- **Key sub-functions:**
-  - `movePieceOnBoard()`: Updates the bitboard for the given move.
-  - `capturePiece()`: Removes the opponent's piece if a capture move is performed.
-  - `promoteToKing()`: Promotes a piece to a king if it reaches the last row.
-  - `getJumpedPosition()`: Calculates the position of a captured piece.
+- **Move Generation**  
+  - **generateSingleStepMoves**: Computes single-step diagonals for normal pieces and additional directions for kings.  
+  - **generateCaptureMoves**: Checks diagonals for opponent pieces and empty landing squares.  
+  - **hasAnyLegalMoves**: Globally checks if the current player can move at all, indicating a potential win/lose condition.
 
-#### `isLegalMove(int startPosition, int endPosition, bool isPlayerOne)`
-Validates if a move from `startPosition` to `endPosition` is legal based on the current board state. It considers single-step moves and capture moves.
+- **Bitwise Utilities**  
+  Utility functions (e.g., `setBit`, `clearBit`, `toggleBit`) provide a lower-level interface for toggling and reading bits, as well as supplemental operations like bitwise addition/multiplication.
 
-#### `generateSingleStepMoves(uint64_t pieces, bool isPlayerOne)`
-Generates a bitboard of all possible single-step moves for the current player based on the pieces' positions and empty spaces.
+---
+## Building and Running
 
-#### `generateCaptureMoves(uint64_t pieces, bool isPlayerOne)`
-Generates a bitboard of all possible capture moves for the current player, considering the positions of the opponent's pieces and available empty spaces.
+1. **Clone or Download** the repository containing these sources.  
+2. **Compile** using your preferred C++ compiler or build system (e.g., CMake, Make):  
+   ```bash
+   g++ -std=c++17 -I include src/*.cpp -o checkers
+   ```
+3. **Run** the compiled executable:  
+   ```bash
+   ./checkers
+   ```
 
-#### `hasAnyLegalMoves(bool isPlayerOne)`
-Checks if the current player has any legal moves remaining. If no moves are available, the game is over.
+---
 
-#### `coordinateToPosition(const std::string &coord)`
-Converts standard checkers board coordinates (e.g., "E3") to a bitboard position (integer between 0 and 63).
+## Sample Usage
 
-#### `displayBoard()`
-Displays the current board state in a human-readable format using standard chess/checkers notation (e.g., pieces shown with 'w', 'b' for normal pieces and 'W', 'B' for kings).
+When running the game, you will be prompted for moves in coordinate format such as `E3 F4`. For a piece at E3 moving diagonally to F4, enter:
+```
+Enter your move (e.g., E3 F4): E3 F4
+```
+The board will update, and the next player’s turn begins.
 
-### CheckersGame Class
+**(Example screenshot or console output can be placed here.)**
 
-The `CheckersGame` class manages the overall game flow, including turn-taking, move processing, and determining the game's end.
+---
 
-#### `startGame()`
-This is the main game loop. It alternates turns between Player 1 and Player 2, displaying the game status, accepting player moves, and handling exceptions. The game ends when one player has no legal moves left.
+## Additional Resources
 
-#### `switchPlayer()`
-Switches the turn between Player 1 and Player 2 after a valid move is made.
+- **Word Doc** with design details and implementation notes:  
+  [Project Report](https://kennesawedu-my.sharepoint.com/:w:/g/personal/lfergu30_students_kennesaw_edu/Ed6gS38TWORBquwvyjcLJJUBlF0DawY3pXWkNjbK6MpE6w?e=AtCZOQ)
 
-#### `processMove(const Move& move)`
-Processes the player's move by calling the `Board` class to update the board state.
+- **YouTube Video Demonstration**:  
+  [Checkers Bitboard in Action](https://youtu.be/qQLEAmnd3eQ)
 
-#### `isGameOver()`
-Checks if the game is over by verifying if the current player has any legal moves left.
+---
 
-#### `getPlayerMove()`
-Prompts the player to input their move using standard notation (e.g., "E3 F4"). It converts the input coordinates to board positions using `Board::coordinateToPosition()`.
+## License
 
-#### `validateMove(const Move &move)`
-Validates the player's move by checking if it is legal using the `Board::isLegalMove()` function.
+Include or reference your chosen license here if applicable.
 
-#### `displayGameStatus()`
-Displays the current board and indicates which player's turn it is.
+---
 
-Some more Info Word doc: https://kennesawedu-my.sharepoint.com/:w:/g/personal/lfergu30_students_kennesaw_edu/Ed6gS38TWORBquwvyjcLJJUBlF0DawY3pXWkNjbK6MpE6w?e=AtCZOQ
-
-Youtube Video Demonstration: https://youtu.be/qQLEAmnd3eQ
-
-
+*For further questions or clarifications, see the source files and documentation within the repository.*
